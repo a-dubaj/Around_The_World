@@ -134,6 +134,5 @@ Highcharts.maps['countries/in/custom/in-all-disputed']
 
 - Confirm the `hc-key` checks in `js/index.js` match the dataset keys.
 
-## Demo
 
-[Demo link](https://a-dubaj.github.io/Around.The.World/)
+## [Demo link](https://a-dubaj.github.io/Around_The_World/)
