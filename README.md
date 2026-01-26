@@ -84,7 +84,7 @@ docker run --rm -p 8080:80 --name around-the-world around-the-world:latest
 
 Mark countries as visited
 
-Edit this array in `js/index.js`:
+### Edit this array in `js/index.js`:
 
 ```js
 const visited_countries = [
@@ -94,7 +94,7 @@ const visited_countries = [
 
 Mark US states as visited
 
-Edit:
+### Edit:
 
 ```js
 const visited_states_in_us = [
@@ -104,7 +104,7 @@ const visited_states_in_us = [
 
 Mark Indian states/UTs as visited
 
-Edit:
+### Edit:
 
 ```js
 const visited_states_in_india = [
