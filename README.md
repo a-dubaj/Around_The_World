@@ -1,5 +1,6 @@
 # Around The World
 
+
 A lightweight, static web app that visualizes visited vs. pending places on an interactive **Highcharts Highmaps** world map, with **drilldown** support for:
 - **United States** (state-level)
 - **India** (state/UT-level, disputed map variant)
