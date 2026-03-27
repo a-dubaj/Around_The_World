@@ -17,6 +17,7 @@ $(function () {
         'hu', // Hungary
         'gr', // Greece
         'hr', // Croatia
+        'it', // Italy 
         'me' 
     ]
 
