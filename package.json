@@ -15,7 +15,12 @@
     "type": "git",
     "url": "git+https://github.com/a-dubaj/Around_The_World.git"
   },
-  "keywords": ["highcharts", "map", "travel", "visualization"],
+  "keywords": [
+    "highcharts",
+    "map",
+    "travel",
+    "visualization"
+  ],
   "author": "Andrzej Dubaj <https://github.com/a-dubaj>",
   "license": "MIT",
   "bugs": {
