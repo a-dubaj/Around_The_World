@@ -71,13 +71,10 @@ $(function () {
         return data;
     }
 
-    // Fetch data
     var world_data = Highcharts.geojson(Highcharts.maps['custom/world']);
     var us_data = Highcharts.geojson(Highcharts.maps['countries/us/us-all']);
     var india_data = Highcharts.geojson(Highcharts.maps['countries/in/custom/in-all-disputed']);
 
-
-    // Set drilldown pointers
     $.each(world_data, function (i) {
 
         if (this.properties[property] == 'us') {
@@ -95,7 +92,6 @@ $(function () {
         this.value = visited_countries.indexOf(this.properties[property]);
     });
 
-    // Instanciate the map
     $('#container').highcharts('Map', {
         chart: {
             spacingBottom: 20,

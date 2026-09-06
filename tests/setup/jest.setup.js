@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 
-// Mock Highcharts dla testów
 global.Highcharts = {
   maps: {
     'custom/world': {},
@@ -18,12 +17,10 @@ global.Highcharts = {
   })
 };
 
-// Setup DOM przed każdym testem
 beforeEach(() => {
   document.body.innerHTML = '<div id="container"></div>';
 });
 
-// Cleanup po każdym teście
 afterEach(() => {
   document.body.innerHTML = '';
   jest.clearAllMocks();
