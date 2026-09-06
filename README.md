@@ -19,8 +19,8 @@ A lightweight, static web app that visualizes visited vs. pending places on an i
 
 ## Preview
 
-| First look | Visited | Pending |
-|---|---|---|
+| First look                           | Visited                        | Pending                        |
+| ------------------------------------ | ------------------------------ | ------------------------------ |
 | ![First look](images/first_look.png) | ![Visited](images/visited.png) | ![Pending](images/pending.png) |
 
 ## Tech Stack
@@ -85,13 +85,15 @@ Tests live under `tests/` and run via Jest + Babel.
 ## Troubleshooting
 
 **Blank map / missing shapes**
+
 - Confirm the script paths in `index.html` match your repository layout.
 - Open DevTools → Console/Network to spot 404s for `world.js`, `us-all.js`, or the India dataset.
 
 **Drilldown does nothing**
+
 - Confirm the datasets are actually loaded:
   ```js
-  Highcharts.maps['countries/us/us-all']
-  Highcharts.maps['countries/in/custom/in-all-disputed']
+  Highcharts.maps['countries/us/us-all'];
+  Highcharts.maps['countries/in/custom/in-all-disputed'];
   ```
 - Confirm the `hc-key` values in your data file match the dataset's keys exactly.
