@@ -95,9 +95,3 @@ Tests live under `tests/` and run via Jest + Babel.
   Highcharts.maps['countries/in/custom/in-all-disputed']
   ```
 - Confirm the `hc-key` values in your data file match the dataset's keys exactly.
-
-## Contributing
-
-Issues and PRs are welcome. If you add a new drilldown map (e.g. another country), please include:
-- the map dataset source/license
-- a short note in this README under **Tech Stack**
