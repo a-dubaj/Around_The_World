@@ -1,139 +1,103 @@
-# Around The World
+# 🌍 Around The World
 
+A lightweight, static web app that visualizes visited vs. pending places on an interactive **Highcharts Highmaps** world map, with drilldown support for individual countries.
 
-A lightweight, static web app that visualizes visited vs. pending places on an interactive **Highcharts Highmaps** world map, with **drilldown** support for:
-- **United States** (state-level)
-- **India** (state/UT-level, disputed map variant)
+**[▶ Live demo](https://a-dubaj.github.io/Around_The_World/)**
 
-The visited/pending status is controlled via simple arrays in `js/index.js`.
-
-<p align="center">
-  <img src="images/first_look.png">
-</p>
-
-This is an example of visited countries. Countries that have been visited are marked in dark green on the map. 
-
-<p align="center">
-  <img src="images/visited.png">
-</p>
-
-Countries that I have not yet visited are marked in light green. 
-<p align="center">
-  <img src="images/pending.png">
-</p>
-
-## Preview
-
-Screenshots (stored in `images/`):
-- `images/first_look.png`
-- `images/pending.png`
-- `images/visited.png`
+![Visited countries](images/visited.png)
 
 ---
 
 ## Features
 
-- Interactive world map (pan/zoom controls, hover highlighting)
-- Two status categories:
-  - **Visited**
-  - **Pending**
+- Interactive world map with pan/zoom controls and hover highlighting
+- Two status categories: **Visited** and **Pending**
 - Drilldown maps:
   - `us` → US states
-  - `in` → India states/UTs (disputed territories map)
-- Simple customization: edit arrays of `hc-key` codes
+  - `in` → India states/UTs (disputed-territories variant)
+- Simple customization via a single data file — no need to touch rendering logic
 
----
+## Preview
+
+| First look | Visited | Pending |
+|---|---|---|
+| ![First look](images/first_look.png) | ![Visited](images/visited.png) | ![Pending](images/pending.png) |
 
 ## Tech Stack
 
-- HTML + JavaScript
-- jQuery
-- Highcharts Highmaps (local vendor assets under `js/lib/`)
+- HTML + JavaScript, jQuery
+- [Highcharts Highmaps](https://www.highcharts.com/maps/) (vendored locally under `js/lib/`)
 - Map datasets:
   - `custom/world`
   - `countries/us/us-all`
   - `countries/in/custom/in-all-disputed`
 
----
+> **Note:** Highcharts is free for personal/non-commercial use only. If you fork this project for commercial purposes, you'll need a [Highcharts license](https://www.highcharts.com/license).
 
-## To run use Docker/Podman
+## Getting Started
 
-### Build:
+### Run with Docker / Podman
+
 ```bash
+# Build
 docker build -t around-the-world:latest .
-```
 
-### Run:
-```bash
-docker build -t around-the-world:latest .
+# Run
 docker run --rm -p 8080:80 --name around-the-world around-the-world:latest
 ```
 
-
-### Podman:
 ```bash
-  podman build -t around-the-world:latest .
-  podman run --rm -p 8080:80 --name around-the-world around-the-world:latest
+# Podman equivalent
+podman build -t around-the-world:latest .
+podman run --rm -p 8080:80 --name around-the-world around-the-world:latest
 ```
 
+Then open **http://localhost:8080**.
 
+### Run locally without Docker
 
-### Open: http://localhost:8080
-
+```bash
+npm install
+npx http-server .   # or any static file server
+```
 
 ## Customization
 
-Mark countries as visited
-
-### Edit this array in `js/index.js`:
+All visited/pending data lives in one place — no need to edit rendering code.
 
 ```js
-const visited_countries = [
-  'pl', 'de', 'fr', 'gb', ...
-];
+// js/data.js
+export const visitedCountries = ['pl', 'de', 'fr', 'gb'];
+export const visitedStatesInUS = ['us-ca', 'us-ny'];
+export const visitedStatesInIndia = ['in-ka', 'in-mh'];
 ```
 
-Mark US states as visited
+> **Important:** entries must match the Highcharts `hc-key` values from the corresponding map dataset (see Troubleshooting below on how to check this in the console).
 
-### Edit:
+## Testing
 
-```js
-const visited_states_in_us = [
-  'us-ca', 'us-ny', ...
-];
+```bash
+npm test
 ```
 
-Mark Indian states/UTs as visited
-
-### Edit:
-
-```js
-const visited_states_in_india = [
-  'in-ka', 'in-mh', ...
-];
-```
-
-**Important:** the entries must match Highcharts `hc-key` values from the corresponding map dataset.
-
+Tests live under `tests/` and run via Jest + Babel.
 
 ## Troubleshooting
-### Blank map / missing shapes
 
-- Confirm the script paths in index.html match your repository layout.
+**Blank map / missing shapes**
+- Confirm the script paths in `index.html` match your repository layout.
+- Open DevTools → Console/Network to spot 404s for `world.js`, `us-all.js`, or the India dataset.
 
-- Open browser DevTools → Console/Network to spot 404s for world.js, us-all.js, or the India dataset.
+**Drilldown does nothing**
+- Confirm the datasets are actually loaded:
+  ```js
+  Highcharts.maps['countries/us/us-all']
+  Highcharts.maps['countries/in/custom/in-all-disputed']
+  ```
+- Confirm the `hc-key` values in your data file match the dataset's keys exactly.
 
-- Drilldown does nothing
+## Contributing
 
-- Ensure the datasets are loaded:
-
-```js
-Highcharts.maps['countries/us/us-all']
-
-Highcharts.maps['countries/in/custom/in-all-disputed']
-```
-
-- Confirm the `hc-key` checks in `js/index.js` match the dataset keys.
-
-
-## [Demo link](https://a-dubaj.github.io/Around_The_World/)
+Issues and PRs are welcome. If you add a new drilldown map (e.g. another country), please include:
+- the map dataset source/license
+- a short note in this README under **Tech Stack**
